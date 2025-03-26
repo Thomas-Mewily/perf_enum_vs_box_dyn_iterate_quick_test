@@ -10,11 +10,13 @@ pub trait IAnimal : Send + Sync
     fn nb_vie(&self) -> u32 { 0 }
 }
 
+
 pub enum Animal
 {
     Chien(Chien),
     Chat(Chat),
 }
+
 impl IAnimal for Animal
 {
     fn nb_os_cache(&self) -> u32 {
@@ -34,8 +36,11 @@ impl IAnimal for Animal
     }
 }
 
+
+
 #[derive(Debug, Clone, Copy)]
 pub struct Chien { nb_os_cache : u32 }
+
 impl IAnimal for Chien 
 {
     fn nb_os_cache(&self) -> u32 { self.nb_os_cache }
@@ -43,10 +48,12 @@ impl IAnimal for Chien
 
 #[derive(Debug, Clone, Copy)]
 pub struct Chat { nb_vie : u32 }
+
 impl IAnimal for Chat 
 {
     fn nb_vie(&self) -> u32 { self.nb_vie }
 }
+
 fn main() 
 {
     let capacity = 200_000_000;
@@ -81,7 +88,6 @@ fn main()
         {
             let nb_os : u32 = animals_enum.iter().map(|v| v.nb_os_cache()).sum();
             black_box(nb_os); // Prevent compiler optimization
-
             //println!("nb os enum    : {}", nb_os);
         }
     ));
@@ -89,7 +95,6 @@ fn main()
         {
             let nb_os : u32 = animals_box_dyn.iter().map(|v| v.nb_os_cache()).sum();
             black_box(nb_os);
-
             //println!("nb os dyn box : {}", nb_os);
         }
     ));
@@ -98,7 +103,6 @@ fn main()
         {
             let nb_os : u32 = animals_enum.par_iter().map(|v| v.nb_os_cache()).sum();
             black_box(nb_os);
-
             //println!("nb os enum par   : {}", nb_os);
         }
     ));
@@ -106,7 +110,6 @@ fn main()
         {
             let nb_os : u32 = animals_box_dyn.par_iter().map(|v| v.nb_os_cache()).sum();
             black_box(nb_os);
-
             //println!("nb os dyn box par : {}", nb_os);
         }
     ));
