@@ -2,6 +2,9 @@
 name = "enum_vs_box_dyn"
 version = "0.1.0"
 edition = "2024"
+license = "MIT OR Apache-2.0"
+authors = ["Mewily <thomas.mewily@gmail.com>"]
+repository = "https://github.com/Thomas-Mewily/perf_enum_vs_box_dyn_iterate_quick_test"
 
 [dependencies]
 rayon = "1.10.0"
